@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
+import Menu from "./Menu.tsx";
+import Game from "./Game.tsx";
 
 export default function PokeGuesserApp() {
   const [startGame, setStartGame] = useState(false);
@@ -7,9 +9,14 @@ export default function PokeGuesserApp() {
     setStartGame(true);
   }
 
+  let content:ReactNode = <Menu handleClick={handleClick}/>;
+  if (startGame){
+    content = <Game />;
+  }
+
   return (
     <div>
-
+      {content}
     </div>
   );
 }

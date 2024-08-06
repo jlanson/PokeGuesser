@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { type Pokemon } from "./Game.tsx";
 
 interface InputProps {
@@ -9,7 +9,8 @@ interface InputProps {
 export default function Input({pokemon, removePokemon}: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function handleClick(){
+  function handleSubmit(e: FormEvent){
+    e.preventDefault();
     if(inputRef.current){
       const guess = inputRef.current.value.toLowerCase();
       if(guess === pokemon.name.toLowerCase()){
@@ -24,10 +25,12 @@ export default function Input({pokemon, removePokemon}: InputProps) {
   
   return(
     <div>
-      <input type="text" placeholder="Enter your guess" ref={inputRef} />
-      <p>
-        <button onClick={handleClick}>Submit</button>
-      </p>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Enter your guess" ref={inputRef} />
+        <p>
+          <button >Submit</button>
+        </p>
+      </form>
     </div>
   );
 }
