@@ -15,6 +15,7 @@ export default function PokeGuesser() {
   const [chosenPokemon, setChosenPokemon] = useState<Pokemon | null>(null);
   const [win, setWin] = useState<boolean>(false);
 
+  // Sets the current pokemon and fetches a new one from the pokeapi
   async function setNewPokemon(){
       const randomPokemonIndex = Math.floor(Math.random() * pokedexNumbersRef.current.length);
       const newPokemon = await fetchPokemon(pokedexNumbersRef.current[randomPokemonIndex] + 1);
