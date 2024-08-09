@@ -1,0 +1,10 @@
+.sillhoute {
+  width: 500px; 
+  height: 500px; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* -webkit-mask-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/79.png');
+  mask-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/79.png'); */
+  background-color: black; /* Color of the silhouette */
+}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Display from "./Display";
+import Display from "./Display/Display";
 import Input from "./Input";
 import fetchPokemon from "../helpers/fetchPokemon";
 import { generatePokedexIds } from "../helpers/generatePokedexIds";
