@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Display from "./Display";
 import Input from "./Input";
 import fetchPokemon from "../helpers/fetchPokemon";
+import { generatePokedexIds } from "../helpers/generatePokedexIds";
 
 export interface Pokemon {
   id: number;
@@ -11,7 +12,7 @@ export interface Pokemon {
 
 export default function PokeGuesser() {
 
-  let pokedexNumbersRef = useRef<number[]>(Array.from(Array(5).keys()));
+  let pokedexNumbersRef = useRef<number[]>(generatePokedexIds());
   const [chosenPokemon, setChosenPokemon] = useState<Pokemon | null>(null);
   const [win, setWin] = useState<boolean>(false);
 

@@ -1,9 +1,21 @@
-// Probably coming back to this later not sure how to add a custom useSelectorHook
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../App";
+import { toggleAllGenerations, toggleGeneration, type Generation } from "./slices/pokemonGameSlice";
 
-// import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-// import { AppDispatch, RootState } from "../App";
+export function usePokemonReducer(gen: Generation | 'all'): [boolean, () => void] {
 
-// type DispatchFunction = () => AppDispatch
+  let selectedGeneration = null;
+  let toggleSelectedGeneration = null;
 
-// export const usePokemonGameSelector: TypedUseSelectorHook<RootState> = () => useSelector((state: RootState) => state.pokemonGame);
-// export const usePokemonGameDispatch: DispatchFunction = useDispatch;
+  const dispatch = useDispatch<AppDispatch>();
+
+  if(gen === 'all'){
+    selectedGeneration = useSelector((state: RootState) => state.pokemonGame.isAllGenerations);
+    toggleSelectedGeneration = () => { dispatch(toggleAllGenerations()) };
+  }else{
+    selectedGeneration = useSelector((state: RootState) => state.pokemonGame[gen]);
+    toggleSelectedGeneration = () => { dispatch(toggleGeneration(gen)) };
+  }
+  
+  return [selectedGeneration, toggleSelectedGeneration];
+}

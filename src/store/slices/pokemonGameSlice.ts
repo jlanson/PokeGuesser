@@ -1,5 +1,18 @@
 
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { act } from 'react';
+
+export type Generation = 
+  | 'generationOne'
+  | 'generationTwo'
+  | 'generationThree'
+  | 'generationFour'
+  | 'generationFive'
+  | 'generationSix'
+  | 'generationSeven'
+  | 'generationEight'
+  | 'generationNine';
+
 
 export interface PokemonGametoggletingsState {
   generationOne: boolean;
@@ -38,32 +51,8 @@ const pokemonGameSlice = createSlice({
   name: 'pokemon',
   initialState,
   reducers: {
-    toggleGenerationOne: (state) => {
-      state.generationOne = !state.generationOne;
-    },
-    toggleGenerationTwo: (state) => {
-      state.generationTwo = !state.generationTwo;
-    },
-    toggleGenerationThree: (state) => {
-      state.generationThree = !state.generationThree;
-    },
-    toggleGenerationFour: (state) => {
-      state.generationFour = !state.generationFour;
-    },
-    toggleGenerationFive: (state) => {
-      state.generationFive = !state.generationFive;
-    },
-    toggleGenerationSix: (state) => {
-      state.generationSix = !state.generationSix;
-    },
-    toggleGenerationSeven: (state) => {
-      state.generationSeven = !state.generationSeven;
-    },
-    toggleGenerationEight: (state) => {
-      state.generationEight = !state.generationEight;
-    },
-    toggleGenerationNine: (state) => {
-      state.generationNine = !state.generationNine;
+    toggleGeneration: (state, action: PayloadAction<Generation>) => {
+        state[action.payload] = !state[action.payload];
     },
     toggleAllGenerations: (state) => {
       state.isAllGenerations = !state.isAllGenerations;
@@ -91,15 +80,8 @@ const pokemonGameSlice = createSlice({
   },
 });
 
-export const {toggleGenerationOne, 
-  toggleGenerationTwo, 
-  toggleGenerationThree, 
-  toggleGenerationFour, 
-  toggleGenerationFive, 
-  toggleGenerationSix, 
-  toggleGenerationSeven, 
-  toggleGenerationEight, 
-  toggleGenerationNine, 
+export const {
+  toggleGeneration,
   toggleAllGenerations, 
   toggleSillhouteMode, 
   toggleZoomMode, 
