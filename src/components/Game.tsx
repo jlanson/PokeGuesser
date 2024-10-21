@@ -53,7 +53,7 @@ export default function PokeGuesser() {
         {inputContent}
       </div>
     )
-  }else{
+  }else if(win){
     content = <div>You won!!!</div>
   }
   return(
