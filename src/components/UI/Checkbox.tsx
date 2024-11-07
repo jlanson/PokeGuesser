@@ -1,27 +1,33 @@
-import { type ComponentPropsWithoutRef } from 'react';
-import { type Generation } from '../../store/slices/pokemonGameSlice';
-import { usePokemonReducer } from '../../store/hooks';
+import { useState, type ComponentPropsWithoutRef } from 'react';
+import { toggleGeneration} from '../../store/slices/gameSettingsSlice';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../App';
 
 type CheckboxProps = ComponentPropsWithoutRef<'input'> & {
   label: string;
-  generation: Generation | 'all';
+  generation: number;
 };
 
 
 export default function Button({label, generation, ...props}: CheckboxProps) {
-  let gen: boolean;
-  let toggleGen: () => void;
 
-  if(generation === 'all'){
-    [gen, toggleGen] = usePokemonReducer('all');
-  }else{
-    [gen, toggleGen] = usePokemonReducer(generation);
+  const dispatch = useDispatch<AppDispatch>();
+  const [checked, setChecked] = useState(true);
+  let toggleGen = () =>{
+    dispatch(toggleGeneration(generation));
+    setChecked((prev) => !prev);
   }
+
+  // if(generation === 'all'){
+  //   [gen, toggleGen] = usePokemonReducer('all');
+  // }else{
+  //   [gen, toggleGen] = usePokemonReducer(generation);
+  // }
 
   return (
     <>
-      <label htmlFor={generation}>{label}</label>
-      <input type="checkbox" id={generation} checked={gen} onChange={toggleGen} {...props} />
+      <label htmlFor={"generation-" + generation}>{label}</label>
+      <input type="checkbox" id={"generation-" + generation} checked={checked} onChange={toggleGen} {...props} />
     </>
   )
 }

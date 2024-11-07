@@ -10,7 +10,7 @@ interface DisplayProps {
 }
 
 export default function Display({ img }: DisplayProps) {
-  const isSillhoute = useSelector((state: RootState) => state.pokemonGame.isSillhouteMode);
+  const isSillhoute = useSelector((state: RootState) => state.gameSettings.isSillhouteMode);
 
   return (
     <div>

@@ -3,24 +3,13 @@ import get from "../utils/https";
 interface PokemonApiResponse {
   id: number;
   name: string;
-  sprites: {
+  sprites:{
     other:{
       "official-artwork":{
         front_default: string;
       }
     }
   }
-}
-
-interface GenerationApiResponse { 
-  id: number;
-  name: string;
-  pokemon_species: SimplePokemonData[];
-}
-
-interface SimplePokemonData {
-  name: string;
-  url: string;
 }
 
 export async function fetchPokemon(id: number){
@@ -40,12 +29,12 @@ export async function fetchPokemon(id: number){
 }
 
 export async function fetchPokemonByGeneration(gen: number){
-  const response = (await get(`https://pokeapi.co/api/v2/generation/${gen}`)) as GenerationApiResponse;
+  const response = (await get(`https://pokeapi.co/api/v2/generation/${gen}`)) as PokemonApiResponse[];
 
-  const data = response.pokemon_species.map((pokemon) => ({  
-      id: parseInt(pokemon.url.split("/").filter(Boolean).pop() || "1"),
+  const data = response.map((pokemon) => ({  
+      id : pokemon.id,
       name: pokemon.name,
-      imgUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.url.split("/").filter(Boolean).pop()}.png`,
+      img: pokemon.sprites.other["official-artwork"].front_default,
   }));
 
   return data;

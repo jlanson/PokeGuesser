@@ -1,6 +1,5 @@
 
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { act } from 'react';
 
 export type Generation = 
   | 'generationOne'
@@ -14,7 +13,8 @@ export type Generation =
   | 'generationNine';
 
 
-export interface PokemonGametoggletingsState {
+export interface GameSettingsState {
+  generations: number[],
   generationOne: boolean;
   generationTwo: boolean;
   generationThree: boolean;
@@ -30,7 +30,8 @@ export interface PokemonGametoggletingsState {
   isAutoCompleteMode: boolean;
 }
 
-const initialState: PokemonGametoggletingsState = {
+const initialState: GameSettingsState = {
+  generations: [1,2,3,4,5,6,7,8,9],
   generationOne: false,
   generationTwo: false,
   generationThree: false,
@@ -47,12 +48,16 @@ const initialState: PokemonGametoggletingsState = {
 };
 
 
-const pokemonGameSlice = createSlice({
-  name: 'pokemon',
+const gameSettingsSlice = createSlice({
+  name: 'gameSettings',
   initialState,
   reducers: {
-    toggleGeneration: (state, action: PayloadAction<Generation>) => {
-        state[action.payload] = !state[action.payload];
+    toggleGeneration: (state, action: PayloadAction<number>) => {
+      if(state.generations.includes(action.payload)){
+        state.generations = state.generations.filter((gen) => gen !== action.payload);
+      }else{
+        state.generations.push(action.payload);
+      }
     },
     toggleAllGenerations: (state) => {
       state.isAllGenerations = !state.isAllGenerations;
@@ -85,6 +90,6 @@ export const {
   toggleAllGenerations, 
   toggleSillhouteMode, 
   toggleZoomMode, 
-  toggleAutoCompleteMode} = pokemonGameSlice.actions;
+  toggleAutoCompleteMode} = gameSettingsSlice.actions;
 
-export default pokemonGameSlice.reducer;
+export default gameSettingsSlice.reducer;

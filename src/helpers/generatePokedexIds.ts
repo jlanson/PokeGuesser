@@ -7,7 +7,7 @@ export function generatePokedexIds(){
     generationFive, generationSix, 
     generationSeven, generationEight, 
     generationNine, isAllGenerations
-  } = useSelector((state: RootState) => state.pokemonGame);
+  } = useSelector((state: RootState) => state.gameSettings);
 
   if(isAllGenerations){
     return Array.from({length: 898}, (_, i) => i + 1);

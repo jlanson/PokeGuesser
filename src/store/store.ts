@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import pokemonGameReducer from "./slices/pokemonGameSlice";
+import gameSettingsSlice from "./slices/gameSettingsSlice";
+import gameStateSlice from "./slices/gameStateSlice";
 
 export default configureStore({
   reducer: {
-    pokemonGame: pokemonGameReducer,
+    gameSettings: gameSettingsSlice,
+    gameState: gameStateSlice,
   },
 });

@@ -1,4 +1,3 @@
-import { usePokemonReducer } from "../store/hooks.ts";
 import { MouseEvent } from "react";
 import Checkbox from "./UI/Checkbox.tsx";
 
@@ -13,16 +12,16 @@ export default function Menu({handleClick}: MenuProps) {
       <h1>PokeGuesser</h1>
       <form action="">
         <div style={{display: 'flex', width: '200px', flexWrap: 'wrap', gap:'5%'}}>
-          <Checkbox label="Generation One" generation="generationOne"/>
-          <Checkbox label="Generation Two" generation="generationTwo"/>
-          <Checkbox label="Generation Three" generation="generationThree"/>
-          <Checkbox label="Generation Four" generation="generationFour"/>
-          <Checkbox label="Generation Five" generation="generationFive"/>
-          <Checkbox label="Generation Six" generation="generationSix"/>
-          <Checkbox label="Generation Seven" generation="generationSeven"/>
-          <Checkbox label="Generation Eight" generation="generationEight"/>
-          <Checkbox label="Generation Nine" generation="generationNine"/>
-          <Checkbox label="All Generations" generation="all"/>
+          <Checkbox label="Generation One" generation={1}/>
+          <Checkbox label="Generation Two" generation={2}/>
+          <Checkbox label="Generation Three" generation={3}/>
+          <Checkbox label="Generation Four" generation={4}/>
+          <Checkbox label="Generation Five" generation={5}/>
+          <Checkbox label="Generation Six" generation={6}/>
+          <Checkbox label="Generation Seven" generation={7}/>
+          <Checkbox label="Generation Eight" generation={8}/>
+          <Checkbox label="Generation Nine" generation={9}/>
+          <Checkbox label="All Generations" generation={1}/>
         </div>
         <label htmlFor="silhouette">Silhouette Mode</label>
         <input type="checkbox" id="silhouette" />
