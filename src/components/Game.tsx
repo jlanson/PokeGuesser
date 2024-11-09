@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import Display from "./Display/Display";
-import Input from "./Input";
+import Input from "./UI/Inputs/Input";
 import { generatePokedexIds } from "../helpers/generatePokedexIds";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../App";
 import {fetchPokemon, removePokemon as removePokemonFromStore } from "../store/slices/gameStateSlice";
+import Autocomplete from "./UI/Inputs/Autocomplete";
 
 export interface Pokemon {
   id: number;
@@ -21,13 +22,6 @@ export default function PokeGuesser() {
   let pokedexNumbersRef = useRef<number[]>(generatePokedexIds());
   const [chosenPokemon, setChosenPokemon] = useState<Pokemon | null>(null);
   const [win, setWin] = useState<boolean>(false);
-
-  // Sets the current pokemon and fetches a new one from the pokeapi
-  // async function setNewPokemon(){
-  //     const randomPokemonIndex = Math.floor(Math.random() * pokedexNumbersRef.current.length);
-  //     const newPokemon = await fetchPokemon(pokedexNumbersRef.current[randomPokemonIndex] + 1);
-  //     setChosenPokemon(newPokemon);
-  // }
 
   async function loadAndSetPokmemon(){
     await dispatch(fetchPokemon(generations));
@@ -68,11 +62,12 @@ export default function PokeGuesser() {
   let inputContent = null;
   if (chosenPokemon && !win){
     displayContent = <Display img={{url: chosenPokemon.imgUrl, alt: chosenPokemon.name}} />;
+    //TODO: Choose input component based on settings
     inputContent = <Input pokemon={chosenPokemon} removePokemon={removePokemon}/>;
     content = (
       <div>
         {displayContent}
-        {inputContent}
+        <Autocomplete pokemon={chosenPokemon} removePokemon={removePokemon}/>
       </div>
     )
   }else if(win){
