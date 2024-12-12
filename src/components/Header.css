@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.logo {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 20vh;
+  }
+
+  /* todo: create media query for logo size for mobile */

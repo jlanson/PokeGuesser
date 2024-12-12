@@ -1,5 +1,7 @@
 import { MouseEvent } from "react";
 import Checkbox from "./UI/Checkbox.tsx";
+import GameModeButton from "./UI/GameModeButton.tsx";
+import "./Menu.css";
 
 interface MenuProps {
   handleClick: (e: MouseEvent<HTMLButtonElement>) => void;
@@ -10,6 +12,12 @@ export default function Menu({handleClick}: MenuProps) {
   return (
     <div>
       <p className="menu-text">&gt; Choose Your Game Mode:</p>
+      <div className="button-container">
+        <GameModeButton text={"Pokemon"}/>
+        <GameModeButton text={"Trainer"}/>
+        <GameModeButton text={"Cries"}/>
+        <GameModeButton text={"Music"}/>
+      </div>
       {/* <form action="">
         <div style={{display: 'flex', width: '200px', flexWrap: 'wrap', gap:'5%'}}>
           <Checkbox label="Generation One" generation={1}/>
