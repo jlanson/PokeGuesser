@@ -1,13 +1,13 @@
 import { Provider } from 'react-redux'
 import './App.css'
-import PokeGuesserApp from './components/PokeguesserApp'
+import PokeGuesserApp from './components/PokeguesserApp.tsx'
 import store from './store/store.ts'
 
 function App() {
   return (
     <>
     <Provider store={store}>
-      <PokeGuesserApp/>
+      <PokeGuesserApp className="poke-guesser"/>
     </Provider>
     </>
   )

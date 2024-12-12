@@ -2,6 +2,8 @@ import { type ReactNode, useState } from "react";
 import Menu from "./Menu.tsx";
 import Game from "./Game.tsx";
 import { MouseEvent } from "react";
+import Header from "./Header.tsx";
+import "./PokeGuesserApp.css";
 
 export default function PokeGuesserApp() {
   const [startGame, setStartGame] = useState(false);
@@ -18,8 +20,11 @@ export default function PokeGuesserApp() {
   }
 
   return (
-    <div>
-      {content}
-    </div>
+    <>
+      <Header/>
+      <div className="poke-guesser">
+        {content}
+      </div>
+    </>
   );
 }

@@ -9,8 +9,8 @@ export default function Menu({handleClick}: MenuProps) {
 
   return (
     <div>
-      <h1>PokeGuesser</h1>
-      <form action="">
+      <p className="menu-text">&gt; Choose Your Game Mode:</p>
+      {/* <form action="">
         <div style={{display: 'flex', width: '200px', flexWrap: 'wrap', gap:'5%'}}>
           <Checkbox label="Generation One" generation={1}/>
           <Checkbox label="Generation Two" generation={2}/>
@@ -29,7 +29,7 @@ export default function Menu({handleClick}: MenuProps) {
       </form>
       <p>
         <button onClick={handleClick}>Start Game!</button>
-      </p>
+      </p> */}
     </div>
   );
 }
