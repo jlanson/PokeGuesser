@@ -4,6 +4,7 @@ import Game from "./Game.tsx";
 import { MouseEvent } from "react";
 import Header from "./Header.tsx";
 import "./PokeGuesserApp.css";
+import { Outlet } from "react-router";
 
 export default function PokeGuesserApp() {
   const [startGame, setStartGame] = useState(false);
@@ -23,7 +24,7 @@ export default function PokeGuesserApp() {
     <>
       <Header/>
       <div className="poke-guesser">
-        {content}
+        <Outlet />
       </div>
     </>
   );

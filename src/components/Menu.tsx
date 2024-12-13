@@ -2,21 +2,33 @@ import { MouseEvent } from "react";
 import Checkbox from "./UI/Checkbox.tsx";
 import GameModeButton from "./UI/GameModeButton.tsx";
 import "./Menu.css";
+import { Link } from "react-router";
 
 interface MenuProps {
   handleClick: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function Menu({handleClick}: MenuProps) {
+export default function Menu() {
 
   return (
     <div>
       <p className="menu-text">&gt; Choose Your Game Mode:</p>
       <div className="button-container">
-        <GameModeButton text={"Pokemon"}/>
-        <GameModeButton text={"Trainer"}/>
-        <GameModeButton text={"Cries"}/>
-        <GameModeButton text={"Music"}/>
+        <Link to="pokemon">
+          <GameModeButton text={"Pokemon"}/>
+        </Link>
+        
+        <Link to="trainer">
+          <GameModeButton text={"Trainer"}/>
+        </Link>
+
+        <Link to="cries">
+          <GameModeButton text={"Cries"}/>
+        </Link>
+
+        <Link to="music">
+          <GameModeButton text={"Music"}/>
+        </Link>
       </div>
       {/* <form action="">
         <div style={{display: 'flex', width: '200px', flexWrap: 'wrap', gap:'5%'}}>
